@@ -1229,6 +1229,13 @@ body.institutional main#content { display: block; }
   font-weight: 700;
   font-size: 1.1rem;
 }
+.cta-supporting {
+  margin: 0.9em 0 0;
+  font-style: italic;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  letter-spacing: 0.01em;
+}
 .feature-visual {
   display: flex;
   align-items: center;

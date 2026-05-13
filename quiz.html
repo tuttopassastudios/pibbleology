@@ -1,0 +1,646 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Belly-Wash Personality Test — Pibbleology</title>
+<meta name="description" content="The Belly-Wash Personality Test: a complimentary seven-question diagnostic that reveals which canonical Pibble variant most closely matches your spirit, with a personalized belly-washing protocol and coursework recommendation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=UnifrakturCook:wght@700&family=Caveat&display=swap">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='28' fill='%238a6d3b'/%3E%3Ctext x='32' y='44' font-family='Georgia' font-size='36' fill='white' text-anchor='middle'%3EP%3C/text%3E%3C/svg%3E">
+<style>
+  /* Scoped: Belly-Wash Personality Test */
+  .quiz-shell { max-width: 760px; margin: 0 auto; padding: 0 1.2em; }
+  .quiz-progress {
+    display: flex; align-items: center; gap: 0.8em;
+    font-family: var(--serif, 'Cormorant Garamond', Georgia, serif);
+    font-size: 0.82rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-soft); margin: 0 0 1.4em;
+  }
+  .quiz-progress-bar {
+    flex: 1; height: 3px; background: var(--rule-soft); border-radius: 2px; overflow: hidden;
+  }
+  .quiz-progress-fill {
+    display: block; height: 100%; background: var(--accent);
+    transition: width 320ms ease;
+  }
+  .quiz-card {
+    background: var(--paper, #fbf5e8);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 2.2em 2em 2em;
+    box-shadow: 0 1px 0 rgba(46,56,86,0.05), 0 18px 40px -28px rgba(46,56,86,0.25);
+  }
+  .quiz-question {
+    font-family: var(--serif, 'Cormorant Garamond', Georgia, serif);
+    font-size: 1.6rem; line-height: 1.25; color: var(--ink);
+    margin: 0 0 1.3em;
+  }
+  .quiz-options { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.6em; }
+  .quiz-option {
+    display: block; width: 100%; text-align: left;
+    background: transparent; color: var(--ink);
+    border: 1px solid var(--rule); border-radius: 3px;
+    padding: 0.9em 1.05em;
+    font: inherit; font-size: 1rem;
+    cursor: pointer;
+    transition: border-color 160ms ease, background 160ms ease, transform 160ms ease;
+  }
+  .quiz-option:hover { border-color: var(--ink-soft); background: rgba(201,169,97,0.06); }
+  .quiz-option:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  .quiz-option.is-selected {
+    border-color: var(--accent);
+    background: rgba(201,169,97,0.12);
+  }
+  .quiz-nav {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 1.6em; gap: 1em;
+  }
+  .quiz-nav .quiz-back {
+    background: none; border: 0; padding: 0.5em 0;
+    color: var(--ink-soft); font: inherit; font-size: 0.92rem;
+    cursor: pointer; letter-spacing: 0.02em;
+  }
+  .quiz-nav .quiz-back:hover { color: var(--ink); }
+  .quiz-nav .quiz-back[hidden] { display: none; }
+
+  /* Intro */
+  .quiz-intro { text-align: center; }
+  .quiz-intro .marginalia { margin-top: 1.6em; }
+
+  /* Result */
+  .quiz-result { display: grid; gap: 1.4em; }
+  .result-header { text-align: center; }
+  .result-eyebrow {
+    font-family: var(--serif, 'Cormorant Garamond', Georgia, serif);
+    text-transform: uppercase; letter-spacing: 0.22em;
+    font-size: 0.78rem; color: var(--accent);
+    margin: 0 0 0.4em;
+  }
+  .result-name {
+    font-family: var(--serif, 'Cormorant Garamond', Georgia, serif);
+    font-size: 2.4rem; line-height: 1.05;
+    margin: 0 0 0.15em; color: var(--ink);
+  }
+  .result-title {
+    font-family: var(--serif, 'Cormorant Garamond', Georgia, serif);
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--accent);
+    margin: 0 0 0.4em;
+    letter-spacing: 0.02em;
+  }
+  .result-microline {
+    margin: 0.6em auto 0;
+    font-family: 'Caveat', cursive;
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    letter-spacing: 0.01em;
+  }
+  .result-portrait {
+    display: block; margin: 0.4em auto 0.6em;
+    width: 180px; height: 180px; object-fit: cover;
+    border-radius: 50%; border: 3px solid var(--accent);
+    box-shadow: 0 6px 20px -10px rgba(46,56,86,0.4);
+  }
+  .result-summary {
+    font-family: var(--serif, 'EB Garamond', Georgia, serif);
+    font-style: italic; font-size: 1.12rem;
+    color: var(--ink); text-align: center;
+    max-width: 52ch; margin: 0 auto;
+  }
+  .result-prescription {
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 1.2em 0; display: grid; gap: 1em;
+  }
+  .result-prescription dt {
+    font-family: var(--serif, 'Cormorant Garamond', Georgia, serif);
+    text-transform: uppercase; letter-spacing: 0.14em;
+    font-size: 0.78rem; color: var(--accent);
+  }
+  .result-prescription dd { margin: 0.25em 0 0; color: var(--ink); }
+  .result-cta { display: flex; flex-wrap: wrap; gap: 0.8em; justify-content: center; }
+  .result-restart {
+    background: none; border: 0; padding: 0.6em 0.2em;
+    color: var(--ink-soft); font: inherit;
+    text-decoration: underline; cursor: pointer;
+  }
+  .result-restart:hover { color: var(--ink); }
+
+  @media (max-width: 640px) {
+    .quiz-card { padding: 1.6em 1.2em; }
+    .quiz-question { font-size: 1.32rem; }
+    .result-name { font-size: 1.9rem; }
+    .result-portrait { width: 140px; height: 140px; }
+  }
+</style>
+</head>
+<body class="institutional">
+
+<a class="skip-link" href="#content">Skip to content</a>
+
+<div class="utility-bar">
+  <div class="utility-inner">
+    <span class="util-locale">Pibbleology International &middot; English (Pibearth)</span>
+    <span class="util-spacer"></span>
+    <a href="index.html#locate">Find a Pibble Center</a>
+    <a href="quiz.html">Take the Free Belly-Wash Personality Test</a>
+    <a href="index.html#donate">Donate Pibuckies</a>
+  </div>
+</div>
+
+<header class="site-header institutional-header" role="banner">
+  <div class="header-inner">
+    <a class="brand" href="index.html" aria-label="Pibbleology home">
+      <span class="brand-mark">PIBBLEOLOGY</span>
+      <span class="brand-tag">The Official Church of Pibble</span>
+    </a>
+    <span class="header-spacer"></span>
+    <nav class="header-nav" aria-label="Primary">
+      <a href="index.html#what-is">What Is Pibbleology?</a>
+      <a href="characters.html">The Faithful</a>
+      <a href="lore-timeline.html">Founding</a>
+      <a href="artifacts.html">Sacraments</a>
+      <a href="glossary.html">Glossary</a>
+    </nav>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false">Dark mode</button>
+  </div>
+</header>
+
+<main id="content" role="main">
+
+  <!-- HERO -->
+  <section class="hero-sub" aria-labelledby="hero-h">
+    <div class="hero-sub-bg" aria-hidden="true">
+      <img src="images/pibble-plush.jpg" alt="">
+    </div>
+    <div class="hero-sub-inner">
+      <p class="breadcrumb">
+        <a href="index.html">Home</a><span class="sep">›</span>
+        <span>The Belly-Wash Personality Test</span>
+      </p>
+      <h1 id="hero-h" class="hero-sub-title">The Belly-Wash Personality Test</h1>
+      <p class="hero-sub-lede">
+        Most people are Pibbles. Few are prepared to hear which kind.
+        Eight questions, five outcomes, scored entirely in your browser.
+        No login. No Pibuckies. No data leaves this page.
+      </p>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="block" aria-labelledby="quiz-h" id="start">
+    <div class="block-inner">
+      <div class="quiz-shell">
+
+        <h2 id="quiz-h" class="visually-hidden" style="position:absolute;left:-9999px;">Belly-Wash Personality Test</h2>
+
+        <!-- INTRO STATE -->
+        <div id="quiz-intro" class="quiz-card quiz-intro">
+          <p class="block-eyebrow">Clinically Unserious, Spiritually Accurate</p>
+          <h3 style="font-family:var(--serif,'Cormorant Garamond',Georgia,serif);font-size:2rem;line-height:1.15;margin:0 0 0.4em;">Are you a Pibble?</h3>
+          <p class="block-lede" style="margin:0 auto 1.4em;max-width:50ch;">
+            Most people are — they simply have not yet been told.
+            Eight brief questions reveal your canonical variant,
+            your recommended belly-washing protocol, and your readiness
+            for entry-level coursework.
+          </p>
+          <button id="quiz-begin" class="cta-primary cta-large" type="button">Begin the Test</button>
+          <p class="marginalia">a living taxonomy demands living hygiene.</p>
+        </div>
+
+        <!-- QUESTION STATE -->
+        <div id="quiz-stage" hidden>
+          <div class="quiz-progress" aria-hidden="true">
+            <span id="quiz-step-label">Question 1 of 8</span>
+            <span class="quiz-progress-bar"><span id="quiz-progress-fill" class="quiz-progress-fill" style="width:0%"></span></span>
+          </div>
+          <div class="quiz-card">
+            <p id="quiz-question" class="quiz-question" aria-live="polite">…</p>
+            <ul id="quiz-options" class="quiz-options" role="radiogroup" aria-labelledby="quiz-question"></ul>
+            <div class="quiz-nav">
+              <button id="quiz-back" class="quiz-back" type="button" hidden>‹ Previous</button>
+              <span class="quiz-spacer" style="flex:1;"></span>
+              <button id="quiz-next" class="cta-primary" type="button" disabled>Next</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- RESULT STATE -->
+        <div id="quiz-result" class="quiz-card quiz-result" hidden>
+          <div class="result-header">
+            <p class="result-eyebrow">Your Canonical Variant</p>
+            <h2 id="result-name" class="result-name">…</h2>
+            <p id="result-title" class="result-title">…</p>
+            <img id="result-portrait" class="result-portrait" src="" alt="">
+            <p id="result-summary" class="result-summary">…</p>
+            <p class="result-microline">Lore-compliant and belly-aware.</p>
+          </div>
+          <dl class="result-prescription">
+            <div>
+              <dt>Recommended Belly-Washing Protocol</dt>
+              <dd id="result-protocol">…</dd>
+            </div>
+            <div>
+              <dt>Suggested Coursework</dt>
+              <dd id="result-course">…</dd>
+            </div>
+            <div>
+              <dt>Readiness Assessment</dt>
+              <dd id="result-readiness">…</dd>
+            </div>
+          </dl>
+          <div class="result-cta">
+            <a id="result-profile" class="cta-primary" href="characters.html">Read the Full Profile</a>
+            <a class="cta-secondary" href="index.html#locate">Find a Pibble Center</a>
+          </div>
+          <div style="text-align:center;">
+            <button id="result-restart" class="result-restart" type="button">Retake the test</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer institutional-footer">
+  <div class="footer-inner footer-grid">
+    <div>
+      <div class="footer-brand">PIBBLEOLOGY</div>
+      <p class="footer-blurb">
+        The Official Church of Pibble &middot; A worldwide spiritual movement
+        founded on the eternal creed <q>I am Pibble. Wash my belly.</q>
+      </p>
+    </div>
+    <div>
+      <h4>The Faith</h4>
+      <ul>
+        <li><a href="index.html#what-is">What Is Pibbleology?</a></li>
+        <li><a href="index.html#tenets">The Three Tenets</a></li>
+        <li><a href="lore-timeline.html">The Founders</a></li>
+        <li><a href="glossary.html">Glossary</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>The Faithful</h4>
+      <ul>
+        <li><a href="characters.html">Variants &amp; Species</a></li>
+        <li><a href="artifacts.html">Sacraments &amp; Items</a></li>
+        <li><a href="lore-timeline.html#pibearth">Pibearth</a></li>
+        <li><a href="lore-timeline.html#geeblorg">Geeblorg</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Get Involved</h4>
+      <ul>
+        <li><a href="quiz.html">Free Personality Test</a></li>
+        <li><a href="index.html#locate">Find a Center</a></li>
+        <li><a href="index.html#donate">Donate Pibuckies</a></li>
+        <li><a href="index.html#video">Watch the Film</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>
+      <strong>Pibbleology</strong> is an independent fan tribute and is not
+      affiliated with the Pibble Verse Wiki, Fandom, or any other site.
+      Imagery used under <a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="noopener">CC&nbsp;BY-SA&nbsp;3.0</a>.
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+(function () {
+  // Variant catalog. Five canonical outcomes.
+  var VARIANTS = {
+    base: {
+      name: "Base Pibble",
+      title: "The Reference Model",
+      portrait: "images/pibble.png",
+      summary: "You are the template, the standard, the original small round referent. Others may innovate; you remain the definition.",
+      protocol: "Warm water, no theatrics, trusted hands. The protocol all others are built upon.",
+      course: "Level I: The Fundamentals of Belly-Washing — your natural home.",
+      readiness: "Exactly where you should be. There is no rush.",
+      profileAnchor: "characters.html#base-pibble"
+    },
+    gmail: {
+      name: "Gmail",
+      title: "The People's Favorite",
+      portrait: "images/gmail.png",
+      summary: "You are visually iconic and a little too memorable to live quietly. The people see spots, grace, and inevitability.",
+      protocol: "Aesthetic excellence and favorable lighting. A clean towel laid first, warm water, two unhurried passes.",
+      course: "Level I now, Level II soon — you will place highly in both.",
+      readiness: "Exceptionally prepared. Lorewriters note that Gmails tend to arrive half-trained.",
+      profileAnchor: "characters.html#gmail"
+    },
+    washington: {
+      name: "Washington",
+      title: "The Distinguished Unit",
+      portrait: "images/washington.png",
+      summary: "You are formal-coated, observant, and not here for foolish procedure. Yours is a dignity that survives even the bath.",
+      protocol: "Full procedural transparency. Measured strokes, a single lit candle, no improvisation.",
+      course: "Level III: Canon & Fanon Stewardship — your bearing suits the seriousness of doctrine.",
+      readiness: "Ready for advanced study. Consider mentoring an incoming Base Pibble.",
+      profileAnchor: "characters.html#washington"
+    },
+    bagel: {
+      name: "Bagel",
+      title: "The Beloved Fool",
+      portrait: "images/bagel.jpeg",
+      summary: "You are open-hearted, affectionate, and powered by warmth. The fellowship trusts you instantly, which is fair.",
+      protocol: "Encouragement, praise, and maybe a treat. Performed with humming, often in company.",
+      course: "Level II: Variant Recognition — your social ease makes you an exceptional welcomer of newcomers.",
+      readiness: "Ready, and likely to bring three friends with you.",
+      profileAnchor: "characters.html#bagel"
+    },
+    pebble: {
+      name: "Pebble",
+      title: "The Elder Round One",
+      portrait: "images/pibble.png",
+      summary: "You are proof that maturity need not compromise roundness of spirit. Time has only refined your pibble essence.",
+      protocol: "A slower ritual with good posture and mutual respect. Knees and lower back consulted in advance.",
+      course: "Any level — you believe in lifelong formation, and the Faithful believe in you.",
+      readiness: "Ready. You've been ready. You will be ready next year, too.",
+      profileAnchor: "characters.html#pebble"
+    },
+    geeble: {
+      name: "Geeble",
+      title: "The Alien Cousin",
+      portrait: "images/geeble.jpg",
+      summary: "You are not from here, but you are with us. Beloved cousin from Geeblorg — loyal to the Pibble, allergic to the Chi, mildly luminescent on weekends.",
+      protocol: "The Pibberry Rinse. Faintly glowing, performed at a respectful interspecies distance, never near a Chi.",
+      course: "Level II: Variant Recognition — to formalize the distinctions your instincts already make.",
+      readiness: "Ready, with the caveat that some Pibearth protocols may strike you as charmingly primitive.",
+      profileAnchor: "characters.html#geeble"
+    },
+    handheld: {
+      name: "Handheld Pibble",
+      title: "The Pocket Devotee",
+      portrait: "images/handheld-pibble.png",
+      summary: "You are small in form, large in spirit, and structurally tote-bag-compatible. Devotion at a portable scale is still devotion.",
+      protocol: "The Pocket Wash. Performed seated, with the Pibble settled in the lap and a blanket within reach.",
+      course: "Level I: The Fundamentals of Belly-Washing — at your own pace, with frequent naps.",
+      readiness: "Ready when rested. Bring a blanket.",
+      profileAnchor: "characters.html#handheld"
+    }
+  };
+
+  // 8 questions. Each option is [label, variant-key]. One point per answer.
+  var QUESTIONS = [
+    {
+      q: "Be honest. In the grand taxonomy of the Verse, your energy is…",
+      a: [
+        ["The original small round citizen.", "base"],
+        ["White-coated and spiritually viral.", "gmail"],
+        ["Dark-coated and weirdly presidential.", "washington"],
+        ["Golden-hearted and incapable of being normal about affection.", "bagel"],
+        ["A little older, a little wiser, still unmistakably pibble-coded.", "pebble"],
+        ["Cousin from Geeblorg. Friendly. Faintly extraterrestrial.", "geeble"],
+        ["Small enough to be portable, devoted enough to be carried.", "handheld"]
+      ]
+    },
+    {
+      q: "Someone says, “We need to wash your belly.” You respond…",
+      a: [
+        ["Understood. Let us proceed with basic dignity.", "base"],
+        ["Obviously. I should look radiant.", "gmail"],
+        ["On what authority?", "washington"],
+        ["Yay!!! Is this a group activity?", "bagel"],
+        ["Fine, but let's respect the knees and lower back.", "pebble"],
+        ["Acceptable. Geeblorg protocols translate.", "geeble"],
+        ["Yes, but you'll have to lift me first.", "handheld"]
+      ]
+    },
+    {
+      q: "Your relationship to being perceived is…",
+      a: [
+        ["I do not ask for attention; I simply generate it by existing.", "base"],
+        ["Being iconic is a burden I carry gracefully.", "gmail"],
+        ["I prefer to be regarded from a respectful distance.", "washington"],
+        ["If love is available, I'm going to walk directly into it.", "bagel"],
+        ["I've been perceived before. I can survive it again.", "pebble"],
+        ["I am perceived across two worlds; one of them gets it.", "geeble"],
+        ["I am perceived primarily from above, and I accept this.", "handheld"]
+      ]
+    },
+    {
+      q: "Pick the phrase most aligned with your spirit.",
+      a: [
+        ["“A classic is a classic for a reason.”", "base"],
+        ["“People tend to remember me, and I let them.”", "gmail"],
+        ["“Dignity is not the absence of silliness.”", "washington"],
+        ["“I bring the warmth personally.”", "bagel"],
+        ["“My silliness has matured.”", "pebble"],
+        ["“I am not local, but I am loyal.”", "geeble"],
+        ["“Compact, complete, and along for the ride.”", "handheld"]
+      ]
+    },
+    {
+      q: "At a gathering of the Faithful, you are…",
+      a: [
+        ["Near the center without trying.", "base"],
+        ["Being pointed at softly, like “that one right there.”", "gmail"],
+        ["Standing in a handsome patch of shadow, evaluating the room.", "washington"],
+        ["Emotionally available to strangers within minutes.", "bagel"],
+        ["Seated comfortably, radiating senior fellowship energy.", "pebble"],
+        ["Visiting from Geeblorg, charmingly out of step, welcomed anyway.", "geeble"],
+        ["Tucked into someone's lap and surveying from there.", "handheld"]
+      ]
+    },
+    {
+      q: "Your ideal belly-wash protocol includes…",
+      a: [
+        ["Warm water, no theatrics, trusted hands.", "base"],
+        ["Aesthetic excellence and favorable lighting.", "gmail"],
+        ["Full procedural transparency.", "washington"],
+        ["Encouragement, praise, and maybe a treat.", "bagel"],
+        ["A slower ritual with good posture and mutual respect.", "pebble"],
+        ["A faint Pibberry rinse and respectful interspecies distance.", "geeble"],
+        ["A miniature observance, performed in someone's lap.", "handheld"]
+      ]
+    },
+    {
+      q: "Which unofficial title suits you best?",
+      a: [
+        ["The Reference Model", "base"],
+        ["The People's Favorite", "gmail"],
+        ["The Distinguished Unit", "washington"],
+        ["The Beloved Fool", "bagel"],
+        ["The Elder Round One", "pebble"],
+        ["The Alien Cousin", "geeble"],
+        ["The Pocket Devotee", "handheld"]
+      ]
+    },
+    {
+      q: "Finally: are you ready for entry-level coursework in belly care?",
+      a: [
+        ["Yes, in a practical and grounded way.", "base"],
+        ["Yes, and I expect to place highly.", "gmail"],
+        ["I will enroll after reviewing the standards.", "washington"],
+        ["Yes, especially if everyone is nice to me.", "bagel"],
+        ["Yes. I believe in lifelong formation.", "pebble"],
+        ["Yes, though the curriculum may strike me as charmingly primitive.", "geeble"],
+        ["Yes, provided naps are built into the schedule.", "handheld"]
+      ]
+    }
+  ];
+
+  // Tiebreaker: when two variants tie on count, prefer the variant the user
+  // selected in Q8, then Q6. (Per design: Q8 declares readiness, Q6 declares
+  // belly-wash style — both are strong identity signals.)
+  var TIEBREAK_ORDER = [7, 5]; // 0-indexed: Q8, then Q6
+
+  // State
+  var state = {
+    index: 0,
+    answers: new Array(QUESTIONS.length).fill(null) // each entry: variant key
+  };
+
+  // Elements
+  var intro = document.getElementById("quiz-intro");
+  var stage = document.getElementById("quiz-stage");
+  var result = document.getElementById("quiz-result");
+  var qEl = document.getElementById("quiz-question");
+  var optionsEl = document.getElementById("quiz-options");
+  var stepLabel = document.getElementById("quiz-step-label");
+  var progressFill = document.getElementById("quiz-progress-fill");
+  var nextBtn = document.getElementById("quiz-next");
+  var backBtn = document.getElementById("quiz-back");
+  var beginBtn = document.getElementById("quiz-begin");
+  var restartBtn = document.getElementById("result-restart");
+
+  function start() {
+    state.index = 0;
+    state.answers = new Array(QUESTIONS.length).fill(null);
+    intro.hidden = true;
+    result.hidden = true;
+    stage.hidden = false;
+    renderQuestion();
+  }
+
+  function renderQuestion() {
+    var i = state.index;
+    var q = QUESTIONS[i];
+    qEl.textContent = q.q;
+    stepLabel.textContent = "Question " + (i + 1) + " of " + QUESTIONS.length;
+    progressFill.style.width = ((i / QUESTIONS.length) * 100) + "%";
+    backBtn.hidden = (i === 0);
+    nextBtn.textContent = (i === QUESTIONS.length - 1) ? "Reveal Result" : "Next";
+
+    optionsEl.innerHTML = "";
+    q.a.forEach(function (opt, idx) {
+      var label = opt[0], key = opt[1];
+      var li = document.createElement("li");
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "quiz-option";
+      btn.setAttribute("role", "radio");
+      btn.setAttribute("aria-checked", state.answers[i] === key ? "true" : "false");
+      btn.dataset.key = key;
+      btn.textContent = label;
+      if (state.answers[i] === key) btn.classList.add("is-selected");
+      btn.addEventListener("click", function () { selectOption(key); });
+      btn.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowDown" || e.key === "ArrowRight") {
+          e.preventDefault();
+          var btns = optionsEl.querySelectorAll(".quiz-option");
+          btns[(idx + 1) % btns.length].focus();
+        } else if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
+          e.preventDefault();
+          var btns2 = optionsEl.querySelectorAll(".quiz-option");
+          btns2[(idx - 1 + btns2.length) % btns2.length].focus();
+        }
+      });
+      li.appendChild(btn);
+      optionsEl.appendChild(li);
+    });
+
+    nextBtn.disabled = (state.answers[i] == null);
+  }
+
+  function selectOption(key) {
+    state.answers[state.index] = key;
+    var btns = optionsEl.querySelectorAll(".quiz-option");
+    btns.forEach(function (b) {
+      var on = b.dataset.key === key;
+      b.classList.toggle("is-selected", on);
+      b.setAttribute("aria-checked", on ? "true" : "false");
+    });
+    nextBtn.disabled = false;
+  }
+
+  nextBtn.addEventListener("click", function () {
+    if (state.answers[state.index] == null) return;
+    if (state.index < QUESTIONS.length - 1) {
+      state.index++;
+      renderQuestion();
+      stage.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+      showResult();
+    }
+  });
+
+  backBtn.addEventListener("click", function () {
+    if (state.index > 0) {
+      state.index--;
+      renderQuestion();
+    }
+  });
+
+  beginBtn.addEventListener("click", start);
+  restartBtn.addEventListener("click", start);
+
+  function showResult() {
+    var tally = {};
+    Object.keys(VARIANTS).forEach(function (k) { tally[k] = 0; });
+    state.answers.forEach(function (k) { if (k && tally.hasOwnProperty(k)) tally[k]++; });
+
+    var best = -1;
+    Object.keys(tally).forEach(function (k) { if (tally[k] > best) best = tally[k]; });
+    var topKeys = Object.keys(tally).filter(function (k) { return tally[k] === best; });
+
+    var winner;
+    if (topKeys.length === 1) {
+      winner = topKeys[0];
+    } else {
+      // Tiebreak: prefer the variant chosen in Q8, then Q6.
+      winner = null;
+      for (var i = 0; i < TIEBREAK_ORDER.length && !winner; i++) {
+        var pick = state.answers[TIEBREAK_ORDER[i]];
+        if (pick && topKeys.indexOf(pick) !== -1) winner = pick;
+      }
+      if (!winner) winner = topKeys[0];
+    }
+    if (best <= 0) winner = "base";
+
+    var v = VARIANTS[winner];
+    document.getElementById("result-name").textContent = v.name;
+    document.getElementById("result-title").textContent = v.title;
+    var portrait = document.getElementById("result-portrait");
+    portrait.src = v.portrait;
+    portrait.alt = "Portrait of a " + v.name;
+    document.getElementById("result-summary").textContent = v.summary;
+    document.getElementById("result-protocol").textContent = v.protocol;
+    document.getElementById("result-course").textContent = v.course;
+    document.getElementById("result-readiness").textContent = v.readiness;
+    document.getElementById("result-profile").setAttribute("href", v.profileAnchor);
+
+    progressFill.style.width = "100%";
+    stage.hidden = true;
+    intro.hidden = true;
+    result.hidden = false;
+    result.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+})();
+</script>
+</body>
+</html>
