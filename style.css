@@ -519,6 +519,133 @@ dl.glossary dd { margin: 0 0 0.4em 1.2em; color: var(--ink-soft); }
 /* Filter highlight when hidden */
 .is-hidden { display: none !important; }
 
+/* Figures & images */
+.infobox-photo {
+  padding: 0;
+  border-bottom: 1px solid var(--rule);
+  background: var(--infobox-head);
+}
+.infobox-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 260px;
+  object-fit: cover;
+}
+
+figure.wiki-figure {
+  border: 1px solid var(--rule);
+  background: var(--infobox-bg);
+  padding: 0.4em 0.4em 0.6em;
+  margin: 0 0 1em 1em;
+  float: right;
+  width: 260px;
+  max-width: 40%;
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  border-radius: 2px;
+}
+figure.wiki-figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--rule);
+}
+figure.wiki-figure figcaption {
+  padding: 0.4em 0.2em 0;
+  line-height: 1.35;
+}
+figure.wiki-figure.left { float: left; margin: 0 1em 1em 0; }
+figure.wiki-figure.wide {
+  float: none;
+  width: 100%;
+  max-width: 100%;
+  margin: 0.6em 0 1.2em;
+}
+
+.hero-banner {
+  border: 1px solid var(--rule);
+  margin: 0 0 1.2em;
+  position: relative;
+  overflow: hidden;
+  border-radius: 2px;
+  background: var(--infobox-head);
+}
+.hero-banner img {
+  display: block;
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+}
+.hero-banner .hero-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.65));
+  color: #fff;
+  padding: 1.2em 0.9em 0.6em;
+  font-size: 0.85rem;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 0.6em;
+  margin: 0.8em 0 1.2em;
+  clear: both;
+}
+.gallery figure {
+  margin: 0;
+  border: 1px solid var(--rule);
+  background: var(--infobox-bg);
+  padding: 0.3em 0.3em 0.5em;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  border-radius: 2px;
+}
+.gallery img {
+  display: block;
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border: 1px solid var(--rule);
+}
+.gallery figcaption {
+  padding: 0.35em 0.2em 0;
+  line-height: 1.3;
+}
+
+.variant-row {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 1em;
+  border: 1px solid var(--rule);
+  background: var(--infobox-bg);
+  padding: 0.7em;
+  margin: 0.6em 0 1em;
+  border-radius: 2px;
+  align-items: start;
+}
+.variant-row img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+  border: 1px solid var(--rule);
+}
+.variant-row .v-caption {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-top: 0.3em;
+  text-align: center;
+}
+@media (max-width: 720px) {
+  .variant-row { grid-template-columns: 1fr; }
+  figure.wiki-figure { float: none; width: 100%; max-width: 100%; margin: 0.6em 0 1em; }
+}
+
 /* 6. Utility & accessibility ------------------------------ */
 :focus-visible {
   outline: 2px solid var(--focus);
