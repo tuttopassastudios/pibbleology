@@ -129,8 +129,8 @@
 
     var images = [
       'images/gmail.png',
-      'images/belly-pibble.png',
-      'images/sweater-pibble.png'
+      'images/handheld-pibble.png',
+      'images/email.webp'
     ];
     var imgIndex = 0;
 
