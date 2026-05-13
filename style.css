@@ -90,17 +90,6 @@ h1, h2, h3, h4 {
   margin: 1.4em 0 0.4em;
 }
 
-/* Prevent floated figures from spilling past their own section */
-main.article h2,
-main.article h3 { clear: both; }
-
-h1.article-title {
-  font-size: 2.2rem;
-  margin: 0 0 0.2em;
-  padding-bottom: 0.25em;
-  border-bottom: 1px solid var(--rule);
-}
-
 h2 {
   font-size: 1.5rem;
   border-bottom: 1px solid var(--rule);
@@ -139,13 +128,6 @@ code, kbd {
 }
 
 hr { border: 0; border-top: 1px solid var(--rule); margin: 1.5em 0; }
-
-sup.refnote a {
-  font-size: 0.78em;
-  vertical-align: super;
-  text-decoration: none;
-  padding: 0 1px;
-}
 
 /* 4. Layout ---------------------------------------------- */
 
@@ -1465,59 +1447,6 @@ body.institutional main#content { display: block; }
   .hero-sub-inner { padding: 3em 1.2em; }
 }
 
-/* Testimonials (homepage) ---------------------------------- */
-.testimonial-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.4em;
-  margin: 2em 0 0;
-}
-.testimonial {
-  margin: 0;
-  padding: 1.6em 1.4em 1.3em;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.18);
-  border-radius: 4px;
-  position: relative;
-}
-.block:not(.block-dark) .testimonial {
-  background: var(--infobox-bg);
-  border-color: var(--rule);
-}
-.testimonial blockquote {
-  margin: 0 0 1em;
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 1.02rem;
-  line-height: 1.55;
-}
-.testimonial figcaption {
-  font-size: 0.86rem;
-  line-height: 1.4;
-  display: flex;
-  flex-direction: column;
-  gap: 0.15em;
-  opacity: 0.9;
-}
-.testimonial figcaption strong { font-weight: 700; }
-.testimonial figcaption span { opacity: 0.75; }
-
-/* Join steps (homepage call to congregation) ---------------- */
-.join-steps {
-  text-align: left;
-  max-width: 36em;
-  margin: 1.6em auto 1.6em;
-  padding-left: 1.4em;
-  font-family: var(--serif);
-  line-height: 1.55;
-}
-.join-steps li { margin: 0.5em 0; }
-.join-postscript {
-  margin-top: 1.6em;
-  font-style: italic;
-  opacity: 0.85;
-}
-
 
 /* =========================================================
    9. ORNAMENT — Illuminated manuscript layer
@@ -1592,8 +1521,7 @@ blockquote::before {
 
 /* === Fleuron section dividers (inline SVG) === */
 hr.fleuron,
-hr.loaf,
-hr.stained {
+hr.loaf {
   border: 0;
   height: 36px;
   margin: 2.2em auto;
@@ -1604,32 +1532,10 @@ hr.stained {
   background-size: contain;
 }
 hr.fleuron {
-  /* Trefoil of droplets — halo of drool */
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 36'><g fill='%23C9A961'><path d='M0 18 L96 18' stroke='%23C9A961' stroke-width='1'/><path d='M144 18 L240 18' stroke='%23C9A961' stroke-width='1'/><path d='M120 6 c-3 5 -6 8 -6 12 a6 6 0 0 0 12 0 c0 -4 -3 -7 -6 -12 z'/><path d='M108 22 c-2 3 -4 5 -4 8 a4 4 0 0 0 8 0 c0 -3 -2 -5 -4 -8 z'/><path d='M132 22 c-2 3 -4 5 -4 8 a4 4 0 0 0 8 0 c0 -3 -2 -5 -4 -8 z'/></g></svg>");
 }
 hr.loaf {
-  /* Sacred Loaf — curled pibble */
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 36'><g fill='none' stroke='%23C9A961' stroke-width='1.4'><path d='M0 18 L80 18'/><path d='M160 18 L240 18'/><ellipse cx='120' cy='20' rx='22' ry='10' fill='%23E8B8A8' stroke='%23C9A961'/><circle cx='108' cy='17' r='1.4' fill='%232E3856' stroke='none'/><path d='M100 14 q-4 -6 -8 -2' /><path d='M140 14 q4 -6 8 -2'/></g></svg>");
-}
-hr.stained {
-  /* Stained-glass band: sage / blush / lilac with indigo leading */
-  height: 14px;
-  background-image: linear-gradient(
-    90deg,
-    var(--ink) 0 2px,
-    var(--accent-2) 2px 18%,
-    var(--ink) 18% calc(18% + 2px),
-    var(--blush) calc(18% + 2px) 38%,
-    var(--ink) 38% calc(38% + 2px),
-    var(--lilac) calc(38% + 2px) 58%,
-    var(--ink) 58% calc(58% + 2px),
-    var(--accent) calc(58% + 2px) 78%,
-    var(--ink) 78% calc(78% + 2px),
-    var(--accent-2) calc(78% + 2px) 100%
-  );
-  border-top: 1px solid var(--accent);
-  border-bottom: 1px solid var(--accent);
-  max-width: 100%;
 }
 
 /* === Illuminated frame for hero/CTA panels === */
@@ -1693,68 +1599,10 @@ hr.stained {
 /* Tame mobile drop caps so they don't dominate */
 @media (max-width: 640px) {
   .block p:first-of-type:not(.block-eyebrow):not(.block-lede):not(.hero-eyebrow):not(.result-eyebrow):not(.world-tag):not(.course-meta):not(.media-caption):not(.profile-caption):first-letter,
-  .block-inner > p:first-of-type:not(.block-eyebrow):not(.block-lede):not(.hero-eyebrow):not(.result-eyebrow):not(.world-tag):not(.course-meta):not(.media-caption):not(.profile-caption):first-letter,
-  .welcome-block p:first-of-type:not(.block-eyebrow):not(.block-lede):not(.hero-eyebrow):not(.result-eyebrow):not(.world-tag):not(.course-meta):not(.media-caption):not(.profile-caption):first-letter,
-  .dropcap::first-letter {
+  .block-inner > p:first-of-type:not(.block-eyebrow):not(.block-lede):not(.hero-eyebrow):not(.result-eyebrow):not(.world-tag):not(.course-meta):not(.media-caption):not(.profile-caption):first-letter {
     font-size: 2.8em;
   }
   hr.fleuron, hr.loaf { max-width: 280px; }
-}
-
-/* Hidden SVG sprite container */
-.svg-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
-.glyph {
-  display: inline-block;
-  width: 1em; height: 1em;
-  vertical-align: -0.15em;
-  fill: currentColor;
-}
-
-/* --- Pibble KYM rewrite: timeline list, references list --- */
-ol.timeline {
-  list-style: none;
-  padding: 0;
-  margin: 2em 0 0;
-  border-left: 2px solid var(--rule, #d8cdb8);
-}
-ol.timeline > li {
-  position: relative;
-  padding: 0.2em 0 1.4em 1.6em;
-}
-ol.timeline > li::before {
-  content: "";
-  position: absolute;
-  left: -7px; top: 0.55em;
-  width: 12px; height: 12px;
-  border-radius: 50%;
-  background: var(--accent, #8a6d3b);
-  box-shadow: 0 0 0 3px var(--bg, #fff);
-}
-ol.timeline .tl-date {
-  font-size: 0.85em;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  font-weight: 600;
-  color: var(--accent, #8a6d3b);
-  margin-bottom: 0.2em;
-}
-ol.timeline .tl-body h3 {
-  margin: 0 0 0.3em 0;
-  font-size: 1.15em;
-}
-ol.timeline .tl-body p {
-  margin: 0;
-  color: var(--ink-soft);
-}
-
-ol.references-list {
-  margin: 1.2em 0 0;
-  padding-left: 1.4em;
-  line-height: 1.6;
-}
-ol.references-list li {
-  margin-bottom: 0.5em;
-  color: var(--ink-soft);
 }
 
 .profile-media video {
