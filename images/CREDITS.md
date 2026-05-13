@@ -22,7 +22,6 @@ with a link back to the original file page on the wiki when possible.
 | Local filename | Original wiki file | Original URL |
 |---|---|---|
 | pibble.png | File:Pibble.png | https://static.wikia.nocookie.net/pibble-verse/images/7/7b/Pibble.png |
-| pibble-plush.jpg | File:Pibble_Plush.jpg | https://static.wikia.nocookie.net/pibble-verse/images/b/b1/Pibble_Plush.jpg |
 | pibble-title.png | File:Pibbletitle.png | https://static.wikia.nocookie.net/pibble-verse/images/5/5a/Pibbletitle.png |
 | pibble-exclaim.webp | File:Pibble!.webp | https://static.wikia.nocookie.net/pibble-verse/images/9/9b/Pibble%21.webp |
 | gmail.png | File:Gmailpib.png | https://static.wikia.nocookie.net/pibble-verse/images/9/9a/Gmailpib.png |
