@@ -18,46 +18,55 @@
 html { scroll-behavior: smooth; }
 
 :root {
-  --bg: #f6f4ee;
-  --canvas: #ffffff;
-  --ink: #1c1c1c;
-  --ink-soft: #3a3a3a;
-  --muted: #6b6b6b;
-  --rule: #d8d4c7;
-  --rule-soft: #ece9df;
-  --link: #2a4b8d;
-  --link-visited: #5a3a8a;
-  --link-hover: #b94a48;
-  --accent: #8a6d3b;
-  --infobox-bg: #fafaf4;
-  --infobox-head: #efece1;
-  --code-bg: #f1efe6;
-  --focus: #2a4b8d;
-  --shadow: 0 1px 0 rgba(0,0,0,0.04);
+  /* Reliquary Pastel — illuminated manuscript palette */
+  --bg: #F4ECDC;            /* Vellum */
+  --canvas: #FBF6E8;        /* Lighter vellum */
+  --ink: #2E3856;           /* Cathedral Indigo */
+  --ink-soft: #4a527a;
+  --muted: #807a6a;
+  --rule: #d9c98f;          /* dim gold rule */
+  --rule-soft: #e8dec0;
+  --link: #6B5A8A;          /* Ash Lilac (deeper) */
+  --link-visited: #8a6db0;
+  --link-hover: #b85a3a;    /* warm rust on hover */
+  --accent: #C9A961;        /* Reliquary Gold */
+  --accent-2: #9BAE8C;      /* Blessed Sage */
+  --blush: #E8B8A8;         /* Pibble Blush */
+  --lilac: #B8A8C4;         /* Ash Lilac */
+  --infobox-bg: #f7eed7;
+  --infobox-head: #ecd9a3;
+  --code-bg: #efe6cc;
+  --focus: #C9A961;
+  --shadow: 0 1px 0 rgba(46,56,86,0.06);
   --maxw: 1240px;
   --rail: 220px;
   --infobox-w: 290px;
-  --serif: Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, "Times New Roman", serif;
+  --serif: "EB Garamond", Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+  --display: "Cormorant Garamond", "EB Garamond", Georgia, serif;
+  --blackletter: "UnifrakturCook", "Cormorant Garamond", serif;
+  --marginalia: "Caveat", "Bradley Hand", cursive;
   --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 /* 2. Themes ----------------------------------------------- */
 html[data-theme="dark"] {
-  --bg: #14161a;
-  --canvas: #1b1e23;
-  --ink: #e8e6df;
-  --ink-soft: #c9c6bd;
-  --muted: #8f8c84;
-  --rule: #2c3038;
-  --rule-soft: #23262c;
-  --link: #8ab4f8;
-  --link-visited: #c8a8ff;
-  --link-hover: #ff9c8a;
+  /* Night Psalter — indigo cathedral after compline */
+  --bg: #1a2138;
+  --canvas: #232c47;
+  --ink: #F4ECDC;
+  --ink-soft: #d8cdb0;
+  --muted: #a39880;
+  --rule: #4a4226;
+  --rule-soft: #2f3550;
+  --link: #C9B8DC;
+  --link-visited: #d8c4f0;
+  --link-hover: #E8B8A8;
   --accent: #d6b271;
-  --infobox-bg: #20242b;
-  --infobox-head: #272c34;
-  --code-bg: #22262d;
-  --focus: #8ab4f8;
+  --accent-2: #7d9070;
+  --infobox-bg: #2a3354;
+  --infobox-head: #38416a;
+  --code-bg: #2a3354;
+  --focus: #d6b271;
 }
 
 /* 3. Typography ------------------------------------------- */
@@ -65,18 +74,19 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--ink);
-  font-family: var(--sans);
-  font-size: 16px;
-  line-height: 1.55;
+  font-family: var(--serif);
+  font-size: 18px;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
 h1, h2, h3, h4 {
-  font-family: var(--serif);
+  font-family: var(--display);
   font-weight: 600;
   color: var(--ink);
-  line-height: 1.25;
+  line-height: 1.2;
+  letter-spacing: 0.005em;
   margin: 1.4em 0 0.4em;
 }
 
@@ -730,31 +740,33 @@ figure.wiki-figure.wide {
    ========================================================= */
 
 :root {
-  --inst-ink: #1a1a1a;
-  --inst-bg: #ffffff;
-  --inst-tan: #f3efe4;
-  --inst-tan-2: #ebe5d3;
-  --inst-dark: #1f242c;
-  --inst-dark-2: #161a20;
-  --inst-gold: #8a6d3b;
-  --inst-gold-bright: #c79a4a;
-  --inst-red: #b94a48;
-  --inst-rule: #d8d4c7;
+  --inst-ink: #2E3856;          /* Cathedral Indigo */
+  --inst-bg: #F4ECDC;           /* Vellum */
+  --inst-tan: #FBF6E8;
+  --inst-tan-2: #ecdfb8;
+  --inst-dark: #2E3856;         /* Cathedral Indigo for "dark" panels */
+  --inst-dark-2: #1f2640;
+  --inst-gold: #B8923F;         /* Reliquary Gold, slightly deeper */
+  --inst-gold-bright: #C9A961;
+  --inst-red: #b85a3a;          /* warm rust (replaces hard red) */
+  --inst-rule: #d9c98f;
 }
 html[data-theme="dark"] {
-  --inst-ink: #e8e6df;
-  --inst-bg: #14161a;
-  --inst-tan: #1f232a;
-  --inst-tan-2: #262b33;
-  --inst-dark: #0d1014;
-  --inst-dark-2: #07090c;
-  --inst-rule: #2c3038;
+  --inst-ink: #F4ECDC;
+  --inst-bg: #1a2138;
+  --inst-tan: #232c47;
+  --inst-tan-2: #2a3354;
+  --inst-dark: #0d1124;
+  --inst-dark-2: #07091a;
+  --inst-rule: #4a4226;
 }
 
 body.institutional {
   background: var(--inst-bg);
   color: var(--inst-ink);
-  font-family: var(--sans);
+  font-family: var(--serif);
+  font-size: 18px;
+  line-height: 1.7;
 }
 body.institutional main#content { display: block; }
 
@@ -1865,4 +1877,650 @@ body.institutional main#content { display: block; }
     border-top: 1px solid var(--inst-rule);
   }
   .hero-sub-inner { padding: 3em 1.2em; }
+}
+
+/* Testimonials (homepage) ---------------------------------- */
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.4em;
+  margin: 2em 0 0;
+}
+.testimonial {
+  margin: 0;
+  padding: 1.6em 1.4em 1.3em;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 4px;
+  position: relative;
+}
+.block:not(.block-dark) .testimonial {
+  background: var(--infobox-bg);
+  border-color: var(--rule);
+}
+.testimonial blockquote {
+  margin: 0 0 1em;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.02rem;
+  line-height: 1.55;
+}
+.testimonial figcaption {
+  font-size: 0.86rem;
+  line-height: 1.4;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15em;
+  opacity: 0.9;
+}
+.testimonial figcaption strong { font-weight: 700; }
+.testimonial figcaption span { opacity: 0.75; }
+
+/* Join steps (homepage call to congregation) ---------------- */
+.join-steps {
+  text-align: left;
+  max-width: 36em;
+  margin: 1.6em auto 1.6em;
+  padding-left: 1.4em;
+  font-family: var(--serif);
+  line-height: 1.55;
+}
+.join-steps li { margin: 0.5em 0; }
+.join-postscript {
+  margin-top: 1.6em;
+  font-style: italic;
+  opacity: 0.85;
+}
+
+/* 8. Liturgical components ------------------------------- */
+
+.scripture {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.1rem;
+  line-height: 1.55;
+  border-left: 3px solid var(--accent);
+  padding: 0.9em 1.4em;
+  margin: 1.8em auto;
+  max-width: 56ch;
+  color: var(--ink-soft);
+  background: var(--infobox-bg);
+}
+.scripture .verse-ref {
+  display: block;
+  font-style: normal;
+  font-variant: small-caps;
+  letter-spacing: 0.09em;
+  font-size: 0.78rem;
+  color: var(--accent);
+  margin-top: 0.6em;
+}
+
+.commandments {
+  list-style: none;
+  counter-reset: cmd;
+  padding: 0;
+  max-width: 60ch;
+  margin: 1.5em auto;
+  font-family: var(--serif);
+}
+.commandments li {
+  counter-increment: cmd;
+  padding: 0.85em 0 0.85em 3.4em;
+  border-bottom: 1px solid var(--rule-soft);
+  position: relative;
+  line-height: 1.5;
+}
+.commandments li:last-child { border-bottom: 0; }
+.commandments li::before {
+  content: counter(cmd, upper-roman) ".";
+  position: absolute;
+  left: 0; top: 0.85em;
+  width: 2.6em;
+  text-align: right;
+  color: var(--accent);
+  font-variant: small-caps;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+}
+
+.prayer-card {
+  border: 1px solid var(--rule);
+  background: var(--infobox-bg);
+  padding: 1.5em 1.7em;
+  max-width: 52ch;
+  margin: 1.8em auto;
+  font-family: var(--serif);
+  text-align: left;
+}
+.prayer-card h3 {
+  margin: 0 0 0.8em;
+  font-variant: small-caps;
+  letter-spacing: 0.12em;
+  font-size: 0.92rem;
+  color: var(--accent);
+  text-align: center;
+  font-weight: 600;
+}
+.prayer-card p { margin: 0.4em 0; }
+.prayer-card .response {
+  display: block;
+  padding-left: 1.6em;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+.prayer-card .amen {
+  text-align: center;
+  font-variant: small-caps;
+  letter-spacing: 0.18em;
+  font-size: 0.85rem;
+  color: var(--accent);
+  margin-top: 0.8em;
+}
+
+.saints-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.4rem;
+  margin: 1.8rem 0;
+}
+.saint-card {
+  border: 1px solid var(--rule);
+  background: var(--canvas);
+  padding: 1.2em 1.3em;
+}
+.saint-card h3 {
+  margin: 0 0 0.4em;
+  font-size: 1.05rem;
+}
+.saint-card .patronage,
+.saint-card .feast {
+  display: block;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  font-variant: small-caps;
+  margin-top: 0.4em;
+}
+.saint-card .patronage { color: var(--ink-soft); }
+.saint-card .feast { color: var(--accent); }
+.saint-card p {
+  margin: 0.6em 0 0;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+
+.feast-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: 1.6em 0;
+  margin: 1.8em 0;
+}
+.feast-item {
+  text-align: center;
+  padding: 0 1em;
+}
+.feast-date {
+  display: block;
+  font-variant: small-caps;
+  letter-spacing: 0.12em;
+  font-size: 0.76rem;
+  color: var(--accent);
+  margin-bottom: 0.4em;
+}
+.feast-name {
+  display: block;
+  font-family: var(--serif);
+  font-size: 1.02rem;
+  margin-bottom: 0.3em;
+}
+.feast-item p {
+  margin: 0;
+  font-size: 0.86rem;
+  color: var(--ink-soft);
+  line-height: 1.45;
+}
+
+.rubric {
+  counter-reset: rite;
+  list-style: none;
+  padding: 0;
+  max-width: 62ch;
+  margin: 1.5em auto;
+  font-family: var(--serif);
+}
+.rubric li {
+  counter-increment: rite;
+  padding: 0.7em 0 0.7em 3.4em;
+  position: relative;
+  border-bottom: 1px dotted var(--rule-soft);
+  line-height: 1.5;
+}
+.rubric li:last-child { border-bottom: 0; }
+.rubric li::before {
+  content: counter(rite, upper-roman) ".";
+  position: absolute; left: 0; top: 0.7em;
+  width: 2.6em;
+  text-align: right;
+  color: var(--accent);
+  font-variant: small-caps;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+}
+.rubric .step-title {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.heresy-note {
+  border: 1px solid var(--link-hover);
+  border-left-width: 4px;
+  padding: 1.1em 1.3em;
+  background: var(--infobox-bg);
+  margin: 1.6em 0;
+}
+.heresy-note h3 {
+  margin: 0 0 0.5em;
+  color: var(--link-hover);
+  font-variant: small-caps;
+  letter-spacing: 0.08em;
+  font-size: 1rem;
+}
+.heresy-note p { margin: 0.5em 0; }
+.heresy-note .council-cite {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  font-variant: small-caps;
+  letter-spacing: 0.06em;
+  margin-top: 0.6em;
+}
+
+.apocrypha-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.4em 0;
+}
+.apocrypha-list li {
+  padding: 0.8em 0;
+  border-bottom: 1px dotted var(--rule-soft);
+  font-family: var(--serif);
+}
+.apocrypha-list li:last-child { border-bottom: 0; }
+.apocrypha-list .apoc-title {
+  display: block;
+  font-style: italic;
+  color: var(--ink);
+  margin-bottom: 0.2em;
+}
+.apocrypha-list .apoc-gloss {
+  display: block;
+  font-style: normal;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+}
+
+.pilgrimage-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.4em;
+  margin: 1.6em 0;
+}
+.pilgrimage-site {
+  border: 1px solid var(--rule);
+  padding: 1.1em 1.2em;
+  background: var(--canvas);
+  font-family: var(--serif);
+}
+.pilgrimage-site h3 {
+  margin: 0 0 0.4em;
+  font-size: 1.02rem;
+}
+.pilgrimage-site .site-location {
+  display: block;
+  font-variant: small-caps;
+  letter-spacing: 0.06em;
+  font-size: 0.76rem;
+  color: var(--accent);
+  margin-bottom: 0.5em;
+}
+.pilgrimage-site p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+}
+
+.abbreviations {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.6em 1.4em;
+  margin: 1.2em 0 1.8em;
+  padding: 1em 1.2em;
+  background: var(--infobox-bg);
+  border: 1px solid var(--rule);
+  font-family: var(--serif);
+}
+.abbreviations dt {
+  font-variant: small-caps;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+.abbreviations dd {
+  margin: 0 0 0.4em;
+  font-size: 0.95rem;
+}
+
+.scripture-index {
+  list-style: none;
+  padding: 0;
+  margin: 1.4em 0;
+  font-family: var(--serif);
+  columns: 2;
+  column-gap: 2em;
+}
+.scripture-index li {
+  break-inside: avoid;
+  padding: 0.35em 0;
+  font-size: 0.95rem;
+  border-bottom: 1px dotted var(--rule-soft);
+}
+.scripture-index .scripture-ref {
+  font-variant: small-caps;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  margin-right: 0.5em;
+}
+@media (max-width: 640px) {
+  .scripture-index { columns: 1; }
+}
+
+/* =========================================================
+   9. ORNAMENT — Illuminated manuscript layer
+   Drop caps, fleurons, gilt frames, stained-glass dividers,
+   blackletter accents, marginalia.
+   ========================================================= */
+
+/* Brand & masthead lean on display + blackletter */
+.brand-mark {
+  font-family: var(--display) !important;
+  font-weight: 700;
+  font-size: 1.8rem;
+  letter-spacing: 0.22em;
+  color: var(--inst-ink);
+}
+.brand-tag {
+  font-family: var(--serif);
+  font-style: italic;
+  letter-spacing: 0.14em;
+  color: var(--inst-gold);
+}
+
+/* Hero titles get the display face, generous tracking */
+.hero-mega .hero-title,
+.sub-hero .sub-hero-title,
+.hero-title {
+  font-family: var(--display) !important;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+/* Section headings — keep classical, no underline rule */
+h1, h2 { border-bottom: none !important; padding-bottom: 0; }
+h1.article-title { border-bottom: 1px solid var(--accent); }
+
+/* Drop caps — first letter of the first paragraph in a block */
+.block p:first-of-type:first-letter,
+.block-inner > p:first-of-type:first-letter,
+.welcome-block p:first-of-type:first-letter,
+.dropcap::first-letter {
+  font-family: var(--blackletter);
+  font-size: 3.6em;
+  line-height: 0.85;
+  float: left;
+  padding: 0.08em 0.12em 0 0;
+  margin-right: 0.04em;
+  color: var(--accent);
+  font-weight: 700;
+}
+.no-dropcap p:first-of-type:first-letter { all: unset; }
+
+/* Blockquote / scripture pull-quote */
+blockquote {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 1.25em;
+  color: var(--ink);
+  border-left: 3px double var(--accent);
+  padding: 0.3em 1.2em;
+  position: relative;
+}
+blockquote::before {
+  content: "“";
+  font-family: var(--display);
+  position: absolute;
+  left: 0.2em; top: -0.1em;
+  font-size: 2.4em;
+  line-height: 1;
+  color: var(--accent);
+  opacity: 0.55;
+}
+
+/* Marginalia — handwritten aside */
+.marginalia {
+  font-family: var(--marginalia);
+  font-size: 1.25rem;
+  line-height: 1.4;
+  color: var(--ink-soft);
+  border-left: 2px solid var(--lilac);
+  padding: 0.2em 0 0.2em 1em;
+  margin: 1.4em 0;
+  max-width: 36em;
+  transform: rotate(-0.3deg);
+}
+
+/* Footnote markers */
+.footnote {
+  font-variant: small-caps;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+
+/* === Fleuron section dividers (inline SVG) === */
+hr.fleuron,
+hr.loaf,
+hr.stained {
+  border: 0;
+  height: 36px;
+  margin: 2.2em auto;
+  width: 100%;
+  max-width: 520px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+}
+hr.fleuron {
+  /* Trefoil of droplets — halo of drool */
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 36'><g fill='%23C9A961'><path d='M0 18 L96 18' stroke='%23C9A961' stroke-width='1'/><path d='M144 18 L240 18' stroke='%23C9A961' stroke-width='1'/><path d='M120 6 c-3 5 -6 8 -6 12 a6 6 0 0 0 12 0 c0 -4 -3 -7 -6 -12 z'/><path d='M108 22 c-2 3 -4 5 -4 8 a4 4 0 0 0 8 0 c0 -3 -2 -5 -4 -8 z'/><path d='M132 22 c-2 3 -4 5 -4 8 a4 4 0 0 0 8 0 c0 -3 -2 -5 -4 -8 z'/></g></svg>");
+}
+hr.loaf {
+  /* Sacred Loaf — curled pibble */
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 36'><g fill='none' stroke='%23C9A961' stroke-width='1.4'><path d='M0 18 L80 18'/><path d='M160 18 L240 18'/><ellipse cx='120' cy='20' rx='22' ry='10' fill='%23E8B8A8' stroke='%23C9A961'/><circle cx='108' cy='17' r='1.4' fill='%232E3856' stroke='none'/><path d='M100 14 q-4 -6 -8 -2' /><path d='M140 14 q4 -6 8 -2'/></g></svg>");
+}
+hr.stained {
+  /* Stained-glass band: sage / blush / lilac with indigo leading */
+  height: 14px;
+  background-image: linear-gradient(
+    90deg,
+    var(--ink) 0 2px,
+    var(--accent-2) 2px 18%,
+    var(--ink) 18% calc(18% + 2px),
+    var(--blush) calc(18% + 2px) 38%,
+    var(--ink) 38% calc(38% + 2px),
+    var(--lilac) calc(38% + 2px) 58%,
+    var(--ink) 58% calc(58% + 2px),
+    var(--accent) calc(58% + 2px) 78%,
+    var(--ink) 78% calc(78% + 2px),
+    var(--accent-2) calc(78% + 2px) 100%
+  );
+  border-top: 1px solid var(--accent);
+  border-bottom: 1px solid var(--accent);
+  max-width: 100%;
+}
+
+/* === Illuminated frame for hero/CTA panels === */
+.illuminated {
+  position: relative;
+  border: 1px solid var(--accent);
+  outline: 1px solid var(--accent);
+  outline-offset: 6px;
+  padding: clamp(1.6rem, 4vw, 3rem) clamp(1.2rem, 4vw, 3rem);
+  background:
+    radial-gradient(circle at top left, rgba(201,169,97,0.06), transparent 60%),
+    var(--canvas);
+}
+.illuminated::before,
+.illuminated::after {
+  content: "";
+  position: absolute;
+  width: 28px; height: 28px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 2 c-1 4 -3 6 -7 7 c4 1 6 3 7 7 c1 -4 3 -6 7 -7 c-4 -1 -6 -3 -7 -7 z' fill='%23C9A961'/></svg>");
+  background-size: contain; background-repeat: no-repeat;
+}
+.illuminated::before { top: -14px; left: -14px; }
+.illuminated::after  { bottom: -14px; right: -14px; transform: rotate(180deg); }
+
+/* === Gilt-framed images === */
+.gilt-frame,
+.profile-row img,
+.member-card img,
+.founder-card img {
+  border: 6px solid var(--accent);
+  outline: 1px solid var(--ink);
+  outline-offset: 2px;
+  background: var(--canvas);
+  padding: 4px;
+  box-shadow:
+    inset 0 0 0 1px rgba(46,56,86,0.25),
+    0 2px 0 rgba(46,56,86,0.06);
+}
+
+/* Roman numerals / chapter markers in tenets */
+.tenet-card .tenet-numeral,
+.tenet-numeral,
+.roman {
+  font-family: var(--blackletter);
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+/* Timeline → gold rule + fleuron markers */
+.timeline::before { background: var(--accent) !important; opacity: 0.55 !important; }
+.timeline-item::before {
+  background: var(--canvas) !important;
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 2px var(--canvas), 0 0 0 3px var(--accent);
+}
+
+/* Nav links — small caps liturgical */
+.institutional-header .header-nav a {
+  font-family: var(--serif);
+  font-variant: small-caps;
+  letter-spacing: 0.18em;
+  text-transform: none;
+  font-weight: 600;
+}
+.institutional-header .header-nav a:hover { color: var(--accent); }
+
+/* Utility bar links — keep them readable on indigo */
+.utility-bar { color: var(--canvas); }
+.utility-inner a { color: var(--canvas); }
+.utility-inner a:hover { color: var(--accent); }
+
+/* CTA / donate-style banners get the illuminated treatment by default */
+.cta-banner,
+.donate-banner {
+  border: 1px solid var(--accent);
+  outline: 1px solid var(--accent);
+  outline-offset: 5px;
+  background: var(--canvas);
+  color: var(--ink);
+}
+
+/* Tame mobile drop caps so they don't dominate */
+@media (max-width: 640px) {
+  .block p:first-of-type:first-letter,
+  .block-inner > p:first-of-type:first-letter,
+  .welcome-block p:first-of-type:first-letter,
+  .dropcap::first-letter {
+    font-size: 2.8em;
+  }
+  hr.fleuron, hr.loaf { max-width: 280px; }
+}
+
+/* Hidden SVG sprite container */
+.svg-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+.glyph {
+  display: inline-block;
+  width: 1em; height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+}
+
+/* --- Pibble KYM rewrite: timeline list, references list --- */
+ol.timeline {
+  list-style: none;
+  padding: 0;
+  margin: 2em 0 0;
+  border-left: 2px solid var(--rule, #d8cdb8);
+}
+ol.timeline > li {
+  position: relative;
+  padding: 0.2em 0 1.4em 1.6em;
+}
+ol.timeline > li::before {
+  content: "";
+  position: absolute;
+  left: -7px; top: 0.55em;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--accent, #8a6d3b);
+  box-shadow: 0 0 0 3px var(--bg, #fff);
+}
+ol.timeline .tl-date {
+  font-size: 0.85em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--accent, #8a6d3b);
+  margin-bottom: 0.2em;
+}
+ol.timeline .tl-body h3 {
+  margin: 0 0 0.3em 0;
+  font-size: 1.15em;
+}
+ol.timeline .tl-body p {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+ol.references-list {
+  margin: 1.2em 0 0;
+  padding-left: 1.4em;
+  line-height: 1.6;
+}
+ol.references-list li {
+  margin-bottom: 0.5em;
+  color: var(--ink-soft);
+}
+
+.profile-media video {
+  width: 100%;
+  border-radius: 6px;
+  background: #000;
+  display: block;
 }
