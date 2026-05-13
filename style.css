@@ -2531,3 +2531,43 @@ ol.references-list li {
   background: #000;
   display: block;
 }
+
+/* ---------- Bouncing Pibble (click belly 3x to dismiss) ---------- */
+.bouncing-pibble {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 140px;
+  height: 140px;
+  z-index: 9000;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: auto;
+  will-change: transform;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,.25));
+  transition: transform .12s ease-out, opacity .35s ease;
+}
+.bouncing-pibble img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+.bouncing-pibble.hit {
+  animation: pibble-squish .18s ease;
+}
+.bouncing-pibble.gone {
+  opacity: 0;
+  transform: scale(.2) rotate(25deg) !important;
+  pointer-events: none;
+}
+@keyframes pibble-squish {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.25, .8); }
+  100% { transform: scale(1); }
+}
+@media (max-width: 640px) {
+  .bouncing-pibble { width: 96px; height: 96px; }
+}
