@@ -27,11 +27,22 @@
     transition: width 320ms ease;
   }
   .quiz-card {
-    background: var(--paper, #fbf5e8);
+    background: var(--inst-tan, #fbf5e8);
     border: 1px solid var(--rule);
     border-radius: 4px;
     padding: 2.2em 2em 2em;
-    box-shadow: 0 1px 0 rgba(46,56,86,0.05), 0 18px 40px -28px rgba(46,56,86,0.25);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.5),
+      0 1px 0 rgba(46,56,86,0.05),
+      0 18px 40px -28px rgba(46,56,86,0.25);
+  }
+  html[data-theme="dark"] .quiz-card {
+    background: var(--inst-tan);
+    border-color: rgba(201,169,97,0.32);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.04),
+      0 1px 0 rgba(0,0,0,0.4),
+      0 22px 48px -28px rgba(0,0,0,0.6);
   }
   .quiz-question {
     font-family: var(--serif, 'Cormorant Garamond', Georgia, serif);
@@ -55,7 +66,17 @@
   }
   .quiz-option.is-selected {
     border-color: var(--accent);
-    background: rgba(201,169,97,0.12);
+    background: rgba(201,169,97,0.14);
+    box-shadow: inset 4px 0 0 var(--accent);
+    padding-left: calc(1.05em + 4px);
+  }
+  html[data-theme="dark"] .quiz-option:hover {
+    border-color: var(--accent);
+    background: rgba(214,178,113,0.10);
+  }
+  html[data-theme="dark"] .quiz-option.is-selected {
+    background: rgba(214,178,113,0.18);
+    border-color: var(--accent);
   }
   .quiz-nav {
     display: flex; justify-content: space-between; align-items: center;
@@ -68,6 +89,14 @@
   }
   .quiz-nav .quiz-back:hover { color: var(--ink); }
   .quiz-nav .quiz-back[hidden] { display: none; }
+  #quiz-next[disabled] {
+    opacity: 0.42;
+    cursor: not-allowed;
+    filter: saturate(0.6);
+  }
+  #quiz-next:not([disabled]) {
+    box-shadow: 0 6px 18px -10px rgba(201,169,97,0.7);
+  }
 
   /* Intro */
   .quiz-intro { text-align: center; }
@@ -107,6 +136,9 @@
     width: 180px; height: 180px; object-fit: cover;
     border-radius: 50%; border: 3px solid var(--accent);
     box-shadow: 0 6px 20px -10px rgba(46,56,86,0.4);
+  }
+  html[data-theme="dark"] .result-portrait {
+    box-shadow: 0 8px 28px -10px rgba(0,0,0,0.7);
   }
   .result-summary {
     font-family: var(--serif, 'EB Garamond', Georgia, serif);
@@ -178,7 +210,7 @@
   <!-- HERO -->
   <section class="hero-sub" aria-labelledby="hero-h">
     <div class="hero-sub-bg" aria-hidden="true">
-      <img src="images/pibble-plush.jpg" alt="">
+      <img src="images/pibble.png" alt="">
     </div>
     <div class="hero-sub-inner">
       <p class="breadcrumb">

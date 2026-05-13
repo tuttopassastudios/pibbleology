@@ -54,7 +54,6 @@ with a link back to the original file page on the wiki when possible.
 | hamburger.jpg | File:Hamburger.jpg | https://static.wikia.nocookie.net/pibble-verse/images/3/3b/Hamburger.jpg |
 | barkley.jpg | File:Barkley.jpg | https://static.wikia.nocookie.net/pibble-verse/images/9/94/Barkley.jpg |
 | gus.jpg | File:Gus.jpg | https://static.wikia.nocookie.net/pibble-verse/images/6/68/Gus.jpg |
-| pibflag.png | File:Pibflag.png | https://static.wikia.nocookie.net/pibble-verse/images/d/d7/Pibflag.png |
 
 ## How to remove or replace
 
