@@ -2403,8 +2403,7 @@ hr.stained {
 /* === Gilt-framed images === */
 .gilt-frame,
 .profile-row img,
-.member-card img,
-.founder-card img {
+.member-card img {
   border: 6px solid var(--accent);
   outline: 1px solid var(--ink);
   outline-offset: 2px;
