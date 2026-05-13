@@ -2571,3 +2571,42 @@ ol.references-list li {
 @media (max-width: 640px) {
   .bouncing-pibble { width: 96px; height: 96px; }
 }
+
+/* ---------- Geeble Explosion + Fake Restart ---------- */
+.geeble-shake { animation: geeble-shake .45s cubic-bezier(.36,.07,.19,.97) both; }
+@keyframes geeble-shake {
+  10%, 90%  { transform: translate3d(-2px, 0, 0); }
+  20%, 80%  { transform: translate3d(4px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-8px, 2px, 0); }
+  40%, 60%  { transform: translate3d(8px, -2px, 0); }
+}
+.geeble-flash {
+  position: fixed; inset: 0; z-index: 99998;
+  background: radial-gradient(circle at center, #fff 0%, #ffe680 35%, #ff7a18 65%, #6a1f00 100%);
+  opacity: 0; pointer-events: none;
+  animation: geeble-flash .9s ease-out forwards;
+}
+@keyframes geeble-flash {
+  0%   { opacity: 0; transform: scale(.2); }
+  15%  { opacity: 1; transform: scale(1.05); }
+  60%  { opacity: 1; transform: scale(1); background: #000; }
+  100% { opacity: 1; background: #000; transform: scale(1); }
+}
+.geeble-blackout {
+  position: fixed; inset: 0; z-index: 99999;
+  background: #000; color: #c9c9c9;
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 18px; text-align: center; padding: 20px;
+}
+.geeble-blackout .geeble-logo {
+  width: 84px; height: 84px; border: 3px solid #444; border-top-color: #8bd17c;
+  border-radius: 50%; animation: geeble-spin 1s linear infinite;
+}
+@keyframes geeble-spin { to { transform: rotate(360deg); } }
+.geeble-blackout .geeble-msg { font-size: 14px; letter-spacing: .08em; opacity: .85; }
+.geeble-blackout .geeble-sub { font-size: 11px; opacity: .55; max-width: 520px; }
+.geeble-blackout .geeble-cursor::after {
+  content: "_"; animation: geeble-blink 1s steps(1) infinite;
+}
+@keyframes geeble-blink { 50% { opacity: 0; } }

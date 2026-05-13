@@ -130,7 +130,8 @@
     var images = [
       'images/gmail.png',
       'images/handheld-pibble.png',
-      'images/email.webp'
+      'images/email.webp',
+      'images/Geeble2.webp'
     ];
     var imgIndex = 0;
 
@@ -182,9 +183,40 @@
     }
     requestAnimationFrame(step);
 
+    function triggerGeebleExplosion() {
+      gone = true;
+      el.classList.add('gone');
+      // Shake the page
+      document.documentElement.classList.add('geeble-shake');
+      // Flash overlay
+      var flash = document.createElement('div');
+      flash.className = 'geeble-flash';
+      document.body.appendChild(flash);
+      // After flash, show fake restart screen
+      setTimeout(function () {
+        document.documentElement.classList.remove('geeble-shake');
+        var black = document.createElement('div');
+        black.className = 'geeble-blackout';
+        black.innerHTML =
+          '<div class="geeble-logo"></div>' +
+          '<div class="geeble-msg">SYSTEM FAILURE — GEEBLE DETECTED</div>' +
+          '<div class="geeble-sub geeble-cursor">Rebooting Pibbleology Wiki</div>';
+        document.body.appendChild(black);
+        // Fake restart: reload after a beat
+        setTimeout(function () {
+          try { window.location.reload(); }
+          catch (err) { window.location.href = window.location.href; }
+        }, 2600);
+      }, 850);
+    }
+
     function onHit(e) {
       if (gone) return;
       e.preventDefault();
+      if (images[imgIndex].indexOf('Geeble2') !== -1) {
+        triggerGeebleExplosion();
+        return;
+      }
       hits++;
       swapImage();
       el.classList.remove('hit');
